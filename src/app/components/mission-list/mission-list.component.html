@@ -1,63 +1,76 @@
 <div class="mission-list-container">
-    <h1>SpaceX Missions</h1>
+  <div class="header-section">
+    <h1>Latest <span class="gradient-text">Missions</span></h1>
     
-    <app-mission-filter (yearSelected)="onYearFilter($event)"></app-mission-filter>
-    
-    <div *ngIf="loading" class="loading-container">
-      <mat-spinner></mat-spinner>
-      <p>Loading missions...</p>
-    </div>
-    
-    <div *ngIf="error" class="error-container">
-      <mat-icon color="warn">error</mat-icon>
-      <p>Failed to load missions. Please try again later.</p>
-      <button mat-raised-button color="primary" (click)="loadMissions()">Retry</button>
-    </div>
-    
-    <div *ngIf="!loading && !error" class="missions-grid">
-      <mat-card *ngFor="let mission of filteredMissions" class="mission-card">
-        <div class="mission-header">
-          <div class="mission-patch" *ngIf="mission.links.mission_patch_small">
-            <img [src]="mission.links.mission_patch_small" [alt]="mission.mission_name + ' patch'">
-          </div>
-          <div class="mission-title">
-            <mat-card-title>{{ mission.mission_name }}</mat-card-title>
-            <mat-card-subtitle>
-              <mat-chip-set>
-                <mat-chip color="primary" selected>Flight #{{ mission.flight_number }}</mat-chip>
-                <mat-chip color="accent" selected>{{ mission.launch_year }}</mat-chip>
-              </mat-chip-set>
-            </mat-card-subtitle>
-          </div>
-        </div>
-        
-        <mat-card-content>
-          <p class="mission-details" *ngIf="mission.details">{{ mission.details | slice:0:150 }}{{ mission.details.length > 150 ? '...' : '' }}</p>
-          <p *ngIf="!mission.details" class="no-details">No details available</p>
-          
-          <mat-divider></mat-divider>
-          
-          <div class="rocket-info">
-            <p><strong>Rocket:</strong> {{ mission.rocket.rocket_name }} ({{ mission.rocket.rocket_type }})</p>
-          </div>
-        </mat-card-content>
-        
-        <mat-card-actions>
-          <a mat-button color="primary" [routerLink]="['/mission', mission.flight_number]">
-            <mat-icon>info</mat-icon> Details
-          </a>
-          <a mat-button *ngIf="mission.links.article_link" [href]="mission.links.article_link" target="_blank">
-            <mat-icon>article</mat-icon> Article
-          </a>
-          <a mat-button *ngIf="mission.links.video_link" [href]="mission.links.video_link" target="_blank">
-            <mat-icon>videocam</mat-icon> Video
-          </a>
-        </mat-card-actions>
-      </mat-card>
-    </div>
-    
-    <div *ngIf="!loading && !error && filteredMissions.length === 0" class="no-results">
-      <mat-icon>search_off</mat-icon>
-      <p>No missions found for the selected criteria.</p>
+    <div class="search-box">
+      <mat-form-field appearance="outline" class="search-field">
+        <mat-icon matPrefix style="color: aliceblue;">search</mat-icon>
+        <input matInput style="color: aliceblue" placeholder="Search missions..." [(ngModel)]="searchTerm" (input)="onSearch()">
+      </mat-form-field>
     </div>
   </div>
+
+  <app-mission-filter (yearSelected)="onYearFilter($event)"></app-mission-filter>
+  <div *ngIf="loading" class="loading-container">
+    <div class="loading-animation">
+      <div class="rocket">🚀</div>
+      <div class="stars">
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+      </div>
+    </div>
+    <p>Loading missions...</p>
+  </div>
+  
+  <div *ngIf="error" class="error-container">
+    <mat-icon color="warn">error</mat-icon>
+    <p>Failed to load missions. Please try again later.</p>
+    <button mat-raised-button color="primary" (click)="loadMissions()">Retry</button>
+  </div>
+  
+  <div *ngIf="!loading && !error && filteredMissions.length > 0" class="missions-grid" [@staggerAnimation]="filteredMissions.length">
+    <div *ngFor="let mission of filteredMissions" class="mission-card glass-card">
+      <div class="mission-status-indicator" [ngClass]="mission.launch_success ? 'success' : 'failed'"></div>
+      
+      <div class="mission-header">
+        <div class="mission-patch" *ngIf="mission.links.mission_patch_small">
+          <img [src]="mission.links.mission_patch_small" [alt]="mission.mission_name + ' patch'">
+        </div>
+        <div class="mission-title">
+          <h2>{{ mission.mission_name }}</h2>
+          <div class="mission-meta">
+            <span class="badge badge-year">
+              <mat-icon>event</mat-icon> {{ mission.launch_year }}
+            </span>
+            <span class="badge badge-rocket">
+              <mat-icon>rocket</mat-icon> {{ mission.rocket.rocket_name }}
+            </span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mission-content">
+        <p *ngIf="mission.details">{{ mission.details | slice:0:150 }}{{ mission.details.length > 150 ? '...' : '' }}</p>
+        <p *ngIf="!mission.details" class="no-details">No mission details available for this launch.</p>
+      </div>
+      
+      <div class="mission-footer">
+        <div [ngClass]="getMissionStatusClass(mission)">
+          <mat-icon>{{ mission.launch_success ? 'check_circle' : 'cancel' }}</mat-icon>
+          <span>{{ mission.launch_success ? 'Successful' : 'Failed' }}</span>
+        </div>
+        
+        <a mat-button class="view-details-btn" [routerLink]="['/mission', mission.flight_number]">
+          View Details <mat-icon>arrow_forward</mat-icon>
+        </a>
+      </div>
+    </div>
+  </div>
+  
+  <div *ngIf="!loading && !error && filteredMissions.length === 0" class="no-results">
+    <mat-icon>search_off</mat-icon>
+    <p>No missions found for the selected criteria.</p>
+    <button mat-raised-button color="accent" (click)="resetFilters()">Reset Filters</button>
+  </div>
+</div>
