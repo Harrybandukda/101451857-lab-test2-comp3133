@@ -1,1 +1,6 @@
-<p>image-viewer works!</p>
+<div class="image-viewer-container">
+    <button mat-icon-button class="close-button" (click)="closeDialog()">
+      <mat-icon>close</mat-icon>
+    </button>
+    <img [src]="data.imageUrl" alt="Mission image" class="fullscreen-image">
+  </div>
