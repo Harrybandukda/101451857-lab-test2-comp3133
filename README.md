@@ -2,6 +2,9 @@
 
 A modern Angular application that displays SpaceX launch data with a sleek, space-themed UI. This project showcases SpaceX missions, rocket information, and launch details using the public SpaceX API.
 
+## 🌐 Live Demo  
+🔗 **[Explore the SpaceX Mission Explorer](https://101451857-lab-test2-comp3133.vercel.app/)**  
+
 ## ✨ Features
 
 - **Mission Dashboard**: Browse all SpaceX missions with a modern, responsive UI
