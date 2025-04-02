@@ -104,13 +104,13 @@ No API key is required as this is a public API.
 ## 📸 Screenshots
 
 ### Home Page
-![Home Page](screenshot/HomePage.png)
+![Home Page](screenshots/HomePage.png)
 
 ### Missions List
-![Missions List](screenshot/MissionPage.png)
+![Missions List](screenshots/MissionPage.png)
 
 ### Mission Details
-![Mission Details](screenshot/ViewDetailPage.png)
+![Mission Details](screenshots/ViewDetailPage.png)
 
 
 
