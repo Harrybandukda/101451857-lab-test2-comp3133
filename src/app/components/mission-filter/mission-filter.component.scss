@@ -1,10 +1,65 @@
 .filter-container {
-    margin-bottom: 24px;
+  margin-bottom: 32px;
+  background: rgba(13, 28, 51, 0.7);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  
+  .filter-header {
     display: flex;
-    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
     
-    mat-form-field {
-      width: 100%;
-      max-width: 300px;
+    mat-icon {
+      color: var(--space-accent);
+    }
+    
+    span {
+      font-size: 18px;
+      font-weight: 500;
+      color: white;
     }
   }
+  
+  .year-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    
+    .year-chip {
+      padding: 8px 16px;
+      background-color: rgba(26, 43, 74, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--space-text-secondary);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        background-color: rgba(93, 95, 239, 0.15);
+        color: white;
+        transform: translateY(-2px);
+      }
+      
+      &.active {
+        background: var(--space-gradient);
+        color: white;
+        box-shadow: 0 4px 15px rgba(93, 95, 239, 0.3);
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .year-chips {
+    .year-chip {
+      padding: 6px 12px;
+      font-size: 13px;
+    }
+  }
+}

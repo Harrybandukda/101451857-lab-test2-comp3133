@@ -6,8 +6,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDialogModule, MatDialog } from '@angular/material/dialog';
+
 import { SpacexService } from '../../services/spacex.service';
 import { Mission } from '../../models/mission.model';
+import { ImageViewerComponent } from '../image-viewer/image-viewer.component';
 
 @Component({
   selector: 'app-mission-details',
@@ -20,7 +23,8 @@ import { Mission } from '../../models/mission.model';
     MatButtonModule,
     MatIconModule,
     MatChipsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatDialogModule
   ]
 })
 export class MissionDetailsComponent implements OnInit {
@@ -31,7 +35,8 @@ export class MissionDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private spacexService: SpacexService
+    private spacexService: SpacexService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -62,5 +67,14 @@ export class MissionDetailsComponent implements OnInit {
 
   goBack(): void {
     this.router.navigate(['/missions']);
+  }
+  
+  openImage(imageUrl: string): void {
+    this.dialog.open(ImageViewerComponent, {
+      data: { imageUrl },
+      maxWidth: '95vw',
+      maxHeight: '95vh',
+      panelClass: 'image-viewer-dialog'
+    });
   }
 }

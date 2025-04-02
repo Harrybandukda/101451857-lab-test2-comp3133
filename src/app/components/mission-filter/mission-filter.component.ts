@@ -4,6 +4,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-mission-filter',
@@ -15,7 +17,16 @@ import { CommonModule } from '@angular/common';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatIconModule
+    MatIconModule,
+    MatButtonModule
+  ],
+  animations: [
+    trigger('fadeInOut', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(10px)' }),
+        animate('0.3s ease-out', style({ opacity: 1, transform: 'translateY(0)' }))
+      ])
+    ])
   ]
 })
 export class MissionFilterComponent implements OnInit {
@@ -32,9 +43,8 @@ export class MissionFilterComponent implements OnInit {
     }
   }
   
-  onYearChange(): void {
-    // Handle the case where value could be null
-    const selectedYear = this.yearControl.value || 'all';
-    this.yearSelected.emit(selectedYear);
+  selectYear(year: string): void {
+    this.yearControl.setValue(year);
+    this.yearSelected.emit(year);
   }
 }
