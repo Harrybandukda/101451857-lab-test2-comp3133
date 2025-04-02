@@ -1,14 +1,59 @@
-/* You can add global styles to this file, and also import other style files */
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+  --space-black: #061a3f;
+  --space-dark: #0a1428;
+  --space-blue: #0d1c33;
+  --space-blue-light: #1a2b4a;
+  --space-accent: #5d5fef;
+  --space-accent-alt: #7b5cfa;
+  --space-success: #00f2c3;
+  --space-warning: #ff8d72;
+  --space-danger: #fd5d93;
+  --space-text: #ffffff;
+  --space-text-secondary: #a0a8c0;
+  --space-text-tertiary: #6c7a9c;
+  --space-gradient: linear-gradient(135deg, var(--space-accent), var(--space-accent-alt));
+  --space-glow: 0 0 15px rgba(93, 95, 239, 0.5);
+  --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --card-hover-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
 
 html, body { 
   height: 100%; 
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: 'Inter', 'Helvetica Neue', sans-serif;
+  background-color: var(--space-black);
+  color: var(--space-text);
+  overflow-x: hidden;
 }
 
 body {
-  background-color: #f5f5f5;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(93, 95, 239, 0.1) 0%, transparent 20%),
+    radial-gradient(circle at 80% 70%, rgba(123, 92, 250, 0.1) 0%, transparent 20%);
+  background-attachment: fixed;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 800 800'%3E%3Cg fill='none' stroke='%231A2B4A' stroke-width='1'%3E%3Cpath d='M769 229L1037 260.9M927 880L731 737 520 660 309 538 40 599 295 764 126.5 879.5 40 599-197 493 102 382-31 229 126.5 79.5-69-63'/%3E%3Cpath d='M-31 229L237 261 390 382 603 493 308.5 537.5 101.5 381.5M370 905L295 764'/%3E%3Cpath d='M520 660L578 842 731 737 840 599 603 493 520 660 295 764 309 538 390 382 539 269 769 229 577.5 41.5 370 105 295 -36 126.5 79.5 237 261 102 382 40 599 -69 737 127 880'/%3E%3Cpath d='M520-140L578.5 42.5 731-63M603 493L539 269 237 261 370 105M902 382L539 269M390 382L102 382'/%3E%3Cpath d='M-222 42L126.5 79.5 370 105 539 269 577.5 41.5 927 80 769 229 902 382 603 493 731 737M295-36L577.5 41.5M578 842L295 764M40-201L127 80M102 382L-261 269'/%3E%3C/g%3E%3Cg fill='%230D1C33'%3E%3Ccircle cx='769' cy='229' r='5'/%3E%3Ccircle cx='539' cy='269' r='5'/%3E%3Ccircle cx='603' cy='493' r='5'/%3E%3Ccircle cx='731' cy='737' r='5'/%3E%3Ccircle cx='520' cy='660' r='5'/%3E%3Ccircle cx='309' cy='538' r='5'/%3E%3Ccircle cx='295' cy='764' r='5'/%3E%3Ccircle cx='40' cy='599' r='5'/%3E%3Ccircle cx='102' cy='382' r='5'/%3E%3Ccircle cx='127' cy='80' r='5'/%3E%3Ccircle cx='370' cy='105' r='5'/%3E%3Ccircle cx='578' cy='42' r='5'/%3E%3Ccircle cx='237' cy='261' r='5'/%3E%3Ccircle cx='390' cy='382' r='5'/%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.1;
+  z-index: -1;
+  pointer-events: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
 }
 
 .container {
@@ -17,14 +62,28 @@ body {
   padding: 0 20px;
 }
 
-/* Animation for cards and elements */
-.mat-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.mat-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 5px rgba(93, 95, 239, 0.5); }
+  50% { box-shadow: 0 0 20px rgba(93, 95, 239, 0.8); }
+  100% { box-shadow: 0 0 5px rgba(93, 95, 239, 0.5); }
 }
 
 /* Custom scrollbar */
@@ -33,14 +92,186 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--space-dark);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: var(--space-blue-light);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: var(--space-accent);
+}
+
+/* Custom Material overrides */
+.mat-mdc-card {
+  background-color: var(--space-blue) !important;
+  color: var(--space-text) !important;
+  border-radius: 16px !important;
+  backdrop-filter: blur(10px);
+  box-shadow: var(--card-shadow) !important;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+}
+
+.mat-mdc-card:hover {
+  box-shadow: var(--card-hover-shadow) !important;
+  transform: translateY(-5px);
+  border-color: rgba(93, 95, 239, 0.2);
+}
+
+.mat-mdc-card-title {
+  color: var(--space-text) !important;
+}
+
+.mat-mdc-card-subtitle {
+  color: var(--space-text-secondary) !important;
+}
+
+.mat-mdc-form-field {
+  color: var(--space-text) !important;
+}
+
+.mat-mdc-select-value {
+  color: var(--space-text) !important;
+}
+
+.mat-mdc-select-arrow {
+  color: var(--space-text) !important;
+}
+
+.mat-mdc-form-field-label {
+  color: var(--space-text-secondary) !important;
+}
+
+.mat-mdc-form-field-underline {
+  background-color: var(--space-blue-light) !important;
+}
+
+.mat-mdc-raised-button.mat-primary {
+  background-color: var(--space-accent) !important;
+  box-shadow: 0 4px 20px rgba(93, 95, 239, 0.5) !important;
+}
+
+.mat-mdc-raised-button.mat-accent {
+  background: var(--space-gradient) !important;
+  box-shadow: 0 4px 20px rgba(123, 92, 250, 0.5) !important;
+}
+
+.mat-mdc-button, .mat-mdc-raised-button, .mat-mdc-outlined-button {
+  border-radius: 8px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.5px !important;
+  text-transform: uppercase !important;
+  transition: all 0.3s ease !important;
+}
+
+.mat-mdc-button:hover, .mat-mdc-raised-button:hover, .mat-mdc-outlined-button:hover {
+  transform: translateY(-2px) !important;
+}
+
+.status-failed {
+  color: var(--space-danger);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.status-successful {
+  color: var(--space-success);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.view-details-btn {
+  background: var(--space-gradient) !important;
+  color: white !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 8px 16px !important;
+  border-radius: 8px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.5px !important;
+  box-shadow: 0 4px 20px rgba(93, 95, 239, 0.3) !important;
+  transition: all 0.3s ease !important;
+}
+
+.view-details-btn:hover {
+  box-shadow: 0 6px 25px rgba(93, 95, 239, 0.5) !important;
+  transform: translateY(-2px) !important;
+}
+
+.view-details-btn mat-icon {
+  transition: transform 0.3s ease;
+}
+
+.view-details-btn:hover mat-icon {
+  transform: translateX(4px);
+}
+
+.glass-card {
+  background: rgba(13, 28, 51, 0.7) !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2) !important;
+}
+
+.animated-element {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.pulse-animation {
+  animation: pulse 2s infinite ease-in-out;
+}
+
+.float-animation {
+  animation: float 6s infinite ease-in-out;
+}
+
+.glow-animation {
+  animation: glow 3s infinite ease-in-out;
+}
+
+.gradient-text {
+  background: var(--space-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
+
+.badge {
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge-success {
+  background-color: rgba(0, 242, 195, 0.15);
+  color: var(--space-success);
+  border: 1px solid rgba(0, 242, 195, 0.3);
+}
+
+.badge-failed {
+  background-color: rgba(253, 93, 147, 0.15);
+  color: var(--space-danger);
+  border: 1px solid rgba(253, 93, 147, 0.3);
+}
+
+.badge-rocket {
+  background-color: rgba(93, 95, 239, 0.15);
+  color: var(--space-accent);
+  border: 1px solid rgba(93, 95, 239, 0.3);
+}
+
+.badge-year {
+  background-color: rgba(123, 92, 250, 0.15);
+  color: var(--space-accent-alt);
+  border: 1px solid rgba(123, 92, 250, 0.3);
 }
