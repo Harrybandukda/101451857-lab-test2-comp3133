@@ -1,29 +1,66 @@
 <div class="home-container">
-    <div class="hero">
-      <h1>Explore SpaceX Missions</h1>
-      <p>Discover the history and details of SpaceX launches</p>
-      <a mat-raised-button color="accent" routerLink="/missions">
+  <div class="hero" [@fadeInUp]>
+    <div class="stars">
+      <div class="star" *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]"></div>
+    </div>
+    <div class="hero-content">
+      <h1>Explore <span class="gradient-text">SpaceX</span> Missions</h1>
+      <p>Discover the history and details of SpaceX launches, from the first Falcon 1 to the latest Starship tests.</p>
+      <a mat-raised-button color="accent" routerLink="/missions" class="cta-button">
         <mat-icon>rocket_launch</mat-icon> View Missions
       </a>
     </div>
-    
-    <div class="features">
-      <mat-card>
-        <mat-icon color="primary">list</mat-icon>
-        <h3>Mission List</h3>
-        <p>Browse through all SpaceX missions with key details</p>
-      </mat-card>
-      
-      <mat-card>
-        <mat-icon color="primary">filter_list</mat-icon>
-        <h3>Filter by Year</h3>
-        <p>Find missions from specific launch years</p>
-      </mat-card>
-      
-      <mat-card>
-        <mat-icon color="primary">info</mat-icon>
-        <h3>Mission Details</h3>
-        <p>Get comprehensive information about each mission</p>
-      </mat-card>
+    <div class="rocket-animation">
+      <div class="rocket">🚀</div>
+      <div class="smoke"></div>
     </div>
   </div>
+  
+  <div class="features" [@staggerAnimation]>
+    <div class="feature-card glass-card">
+      <div class="feature-icon">
+        <mat-icon>list</mat-icon>
+      </div>
+      <h3>Mission List</h3>
+      <p>Browse through all SpaceX missions with key details about each launch, including success status and rocket information.</p>
+    </div>
+    
+    <div class="feature-card glass-card">
+      <div class="feature-icon">
+        <mat-icon>filter_list</mat-icon>
+      </div>
+      <h3>Filter by Year</h3>
+      <p>Find missions from specific launch years to track SpaceX's progress and achievements over time.</p>
+    </div>
+    
+    <div class="feature-card glass-card">
+      <div class="feature-icon">
+        <mat-icon>info</mat-icon>
+      </div>
+      <h3>Mission Details</h3>
+      <p>Get comprehensive information about each mission, including payload details, launch site, and media resources.</p>
+    </div>
+  </div>
+  
+  <div class="stats-section glass-card" [@fadeInUp]>
+    <h2>SpaceX Achievements</h2>
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-value">100+</div>
+        <div class="stat-label">Successful Launches</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">70+</div>
+        <div class="stat-label">Booster Landings</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">30+</div>
+        <div class="stat-label">Reused Rockets</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">20+</div>
+        <div class="stat-label">Dragon Missions</div>
+      </div>
+    </div>
+  </div>
+</div>

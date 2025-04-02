@@ -1,13 +1,21 @@
-<mat-toolbar color="primary" class="header">
-    <span class="logo">🚀</span>
-    <span class="title">{{ title }}</span>
-    <span class="spacer"></span>
-    <nav>
-      <a mat-button routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-        <mat-icon>home</mat-icon> Home
-      </a>
-      <a mat-button routerLink="/missions" routerLinkActive="active">
-        <mat-icon>rocket_launch</mat-icon> Missions
-      </a>
-    </nav>
-  </mat-toolbar>
+<div class="header" [ngClass]="{'scrolled': isScrolled}">
+  <div class="logo">
+    <span class="logo-icon">🚀</span>
+    <div class="logo-text">
+      <span class="logo-spacex">SPACE<span class="logo-x">X</span></span>
+      <span class="logo-explorer">EXPLORER</span>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a routerLink="/missions" routerLinkActive="active" class="nav-link">
+      <mat-icon>rocket_launch</mat-icon>
+      <span>Missions</span>
+      <div class="nav-link-highlight"></div>
+    </a>
+    <a routerLink="/filter" routerLinkActive="active" class="nav-link">
+      <mat-icon>filter_list</mat-icon>
+      <span>By Year</span>
+      <div class="nav-link-highlight"></div>
+    </a>
+  </div>
+</div>
