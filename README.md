@@ -1,59 +1,117 @@
-# 101451857LabTest2Comp3133
+# 🚀 SpaceX Mission Explorer
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.5.
+A modern Angular application that displays SpaceX launch data with a sleek, space-themed UI. This project showcases SpaceX missions, rocket information, and launch details using the public SpaceX API.
 
-## Development server
+## ✨ Features
 
-To start a local development server, run:
+- **Mission Dashboard**: Browse all SpaceX missions with a modern, responsive UI
+- **Mission Details**: View comprehensive information about each mission
+- **Year Filtering**: Filter missions by launch year
+- **Search Functionality**: Search missions by name or rocket type
+- **Responsive Design**: Fully responsive layout that works on all devices
+- **Modern UI**: Glassmorphism, animations, and space-themed design elements
+- **Interactive Elements**: Hover effects, transitions, and micro-interactions
+- **Image Gallery**: View mission images in a full-screen modal
 
-```bash
+
+## 🛠️ Technologies Used
+
+- **Angular 17**: Latest version with standalone components
+- **Angular Material**: UI component library
+- **TypeScript**: Type-safe JavaScript
+- **RxJS**: Reactive programming library
+- **SpaceX API**: Public API for SpaceX data
+- **SCSS**: Advanced styling with variables and mixins
+- **Angular Animations**: For smooth transitions and effects
+
+## 🚀 Installation
+
+1. Clone the repository:
+
+```shellscript
+git clone https://github.com/Harrybandukda/101451857-lab-test2-comp3133
+cd 101451857-lab-test2-comp3133
+```
+
+
+2. Install dependencies:
+
+```shellscript
+npm install
+```
+
+
+3. Start the development server:
+
+```shellscript
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-## Code scaffolding
+4. Open your browser and navigate to `http://localhost:4200`
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
 
-```bash
-ng generate component component-name
-```
+## 📱 Usage
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### Home Page
 
-```bash
-ng generate --help
-```
+The home page provides an overview of the application features and quick access to the missions list.
 
-## Building
+### Missions List
 
-To build the project run:
+Browse all SpaceX missions with key details:
 
-```bash
-ng build
-```
+- Mission name and patch
+- Launch year
+- Rocket information
+- Success/failure status
+- Brief mission description
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
-## Running unit tests
+### Mission Details
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Click on "View Details" to see comprehensive information about a specific mission:
 
-```bash
-ng test
-```
+- Full mission description
+- Rocket specifications
+- Launch site information
+- First stage and payload details
+- External links (articles, videos, Wikipedia)
+- Mission images gallery
 
-## Running end-to-end tests
 
-For end-to-end (e2e) testing, run:
+### Filtering
 
-```bash
-ng e2e
-```
+Use the year filter to view missions from a specific launch year.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+### Searching
 
-## Additional Resources
+Use the search box to find missions by name or rocket type.
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## 🌐 API Information
+
+This application uses the public SpaceX API to fetch mission data:
+
+- Base URL: `https://api.spacexdata.com/v3`
+- Endpoints used:
+
+- `/launches`: Get all launches
+- `/launches/:flight_number`: Get specific launch by flight number
+- `/launches/year/:year`: Get launches by year
+
+No API key is required as this is a public API.
+
+## 📸 Screenshots
+
+### Home Page
+![Home Page](screenshot/HomePage.png)
+
+### Missions List
+![Missions List](screenshot/MissionPage.png)
+
+### Mission Details
+![Mission Details](screenshot/ViewDetailPage.png)
+
+
+
+---
