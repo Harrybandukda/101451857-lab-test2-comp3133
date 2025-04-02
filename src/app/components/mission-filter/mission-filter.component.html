@@ -1,1 +1,11 @@
-<p>mission-filter works!</p>
+<div class="filter-container">
+    <mat-form-field appearance="fill">
+      <mat-label>Filter by Launch Year</mat-label>
+      <mat-select [formControl]="yearControl" (selectionChange)="onYearChange()">
+        <mat-option *ngFor="let year of years" [value]="year">
+          {{ year === 'all' ? 'All Years' : year }}
+        </mat-option>
+      </mat-select>
+      <mat-icon matPrefix>filter_list</mat-icon>
+    </mat-form-field>
+  </div>
